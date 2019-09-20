@@ -1,0 +1,92 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    Welcome to {{ title }}!
+  </h1>
+  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+</div>
+<h2>Here are some links to help you start: </h2>
+<ul>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
+  </li>
+  <li>
+    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
+  </li>
+</ul>
+
+<button (click)="getPosts()"> gets posts</button>
+<div *ngFor="let post of posts | async">
+{{post | json}}
+</div>
+<button (click)="createPost()"> create posts</button>
+<hr>
+{{newPost | async | json}}
+
+<fusioncharts
+    width="700"
+    height="400"
+    type="Column2d"
+    [dataSource]="dataSource">
+</fusioncharts>
+
+<!--<h1>{{title}}</h1>
+<app-heroes></app-heroes>
+<app-messages></app-messages>
+<router-outlet></router-outlet>-->
+<countdown [config]="{leftTime: 6530}"></countdown>
+
+<div class="alert alert-primary" role="alert">
+  A simple primary alert—check it out!
+</div>
+<div class="alert alert-secondary" role="alert">
+  A simple secondary alert—check it out!
+</div>
+<div class="alert alert-success" role="alert">
+  A simple success alert—check it out!
+</div>
+<div class="alert alert-danger" role="alert">
+  A simple danger alert—check it out!
+</div>
+<div class="alert alert-warning" role="alert">
+  A simple warning alert—check it out!
+</div>
+<div class="alert alert-info" role="alert">
+  A simple info alert—check it out!
+</div>
+<div class="alert alert-light" role="alert">
+  A simple light alert—check it out!
+</div>
+<div class="alert alert-dark" role="alert">
+  A simple dark alert—check it out!
+</div>
+
+<h1>{{title}}</h1>
+
+
+
+<h1>Bar Chart</h1>
+<!--<app-bar-chart [data]="data | async"></app-bar-chart>-->
+
+
+
+<nav>
+  <a routerLink="/dashboard">Dashboard</a>
+  <a routerLink="/heroes">Heroes</a>
+  <a routerLink="/counttime">counttime</a>
+  <a routerLink="/chart">chart</a>
+  <a routerLink="/weather">weather</a>
+  <a routerLink="/newweather">new weather</a>
+  <a routerLink="/scatter-chart">scatter chart</a>
+  <a routerLink="/Financial">Financial Chart</a>
+  <a routerLink="/CalendarHeatMap">Calendar Heat Map</a>
+  <a routerLink="/BarChart">Bar Chart</a>
+  <a routerLink="/Apexchart">Apex chart</a>
+</nav>
+
+
+<router-outlet></router-outlet>
+<app-messages></app-messages>
