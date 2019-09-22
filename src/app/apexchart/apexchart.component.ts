@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+// @ts-ignore
 import ApexCharts from 'apexcharts';
+import { ISeries, IChartData } from './apex-defined';
 @Component({
   selector: 'app-apexchart',
   templateUrl: './apexchart.component.html',
@@ -22,14 +24,41 @@ export class ApexchartComponent implements OnInit {
       });
       i++;
     }
-    console.log(series);
+    // console.log(series);
     return series;
   }
 
   ngOnInit() {
-    let options = {
+    // giá trị lấy từ api
+    const metaData = [{
+      name: 'tuan 1',
+      // tslint:disable-next-line:max-line-length
+      data: [{ x: '1', y: 9 }, { x: '1', y: 8 }, { x: '3', y: 0 }, { x: '4', y: 0}, { x: '5', y: 0}, { x: '6', y: 0}, { x: '7', y: 0}, { x: '8', y: 0}, { x: '9', y: 0}, { x: '10', y: 0}, { x: '11', y: 0}, { x: '12', y: 0}]
+    }];
+
+    // convert từ giá trị api
+    const series: ISeries = {
+      name: metaData[0].name,
+      data: metaData[0].data.map(metaItem => {
+        const idata: IChartData = {
+          x: metaItem.x,
+          y: metaItem.y
+        };
+        return idata;
+      })
+    };
+
+    //
+    // for (const metaItem of metaData.data) {
+    //   metaItem.x = 'shih';
+    // }
+
+    console.log('1');
+    console.log(series);
+
+    const options = {
       chart: {
-        height: 350,
+        height: 200,
         type: 'heatmap',
       },
       plotOptions: {
@@ -68,67 +97,44 @@ export class ApexchartComponent implements OnInit {
       dataLabels: {
         enabled: false
       },
-      series: [{
-          name: 'Mon',
-          // tslint:disable-next-line: max-line-length
-          data:[{ x: '1', y: 5 }, { x: '1', y: 0 }, { x: '3', y: 0 }, { x: '4', y: 0},{ x: '5', y: 0},{ x: '6', y: 0},{ x: '7', y: 0},{ x: '8', y: 0},{ x: '9', y: 0},{ x: '10', y: 0},{ x: '11', y: 0},{ x: '12', y: 0}]
-        },
+      series: [
+        series,
         {
-          name: 'Tus',
+          name: 'tuan 2',
+          // x dùng để biểu hiện giá trị 1 ô hiện dc lượt
+          // tslint:disable-next-line:max-line-length
+          data: [{ x: '1', y: 0 }, { x: '2', y: 8 }, { x: '3', y: 0 }, { x: '4', y: 0}, { x: '5', y: 0}, { x: '6', y: 0}, { x: '7', y: 0}, { x: '8', y: 0}, { x: '9', y: 0}, { x: '10', y: 0}, { x: '11', y: 0}, { x: '12', y: 0}]
+        },
+
+        {
+          name: 'tuan 3',
           data: this.generateData(12, {
             min: 0,
             max: 0
           })
         },
         {
-          name: 'Wed',
-          data: this.generateData(12, {
-            min: 0,
-            max: 0
-          })
-        },
-        {
-          name: 'Thu',
-          data: this.generateData(12, {
-            min: 0,
-            max: 0
-          })
-        },
-        {
-          name: 'Fri',
-          data: this.generateData(12, {
-            min: 0,
-            max: 0
-          })
-        },
-        {
-          name: 'Sat',
-          data: this.generateData(12, {
-            min: 0,
-            max: 0
-          })
-        },
-        {
-          name: 'Sun',
+          name: 'tuan 4',
           data: this.generateData(12, {
             min: 0,
             max: 0
           })
         }
       ],
+      // set biểu đồ có 2 dòng
       xaxis: {
-        categories: ['t1','t2','t3','t4',"t5",'t6','t7','t8','t9','t10','t11','t12']
+        categories: ['t1', 't2', 't3', 't4', 't5', 't6', 't7', 't8', 't9', 't10', 't11', 't12']
       },
       yaxis: {
-        categories: ['Mon','Tus','Wed','Thu',"Fri",'Sat','Sun']
+        categories: ['Mon', 'Tus', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
       },
       title: {
         text: 'HeatMap Chart with Color Range'
       },
 
-    }
+    };
 
-    let chart = new ApexCharts(document.querySelector("#chart"), options);
+    const chart = new ApexCharts(document.querySelector('#chart'), options);
 
     chart.render();
 
